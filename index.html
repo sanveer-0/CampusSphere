@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CampusSphere — Home</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="brand">
+          <div class="logo">CS</div>
+          <div>
+            <h2 style="margin: 0">CampusSphere</h2>
+            <div class="small">Events • Clubs • Campus life</div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <input class="search-input" placeholder="Search events..." />
+          <select id="filterCategory" class="input">
+            <option value="">All categories</option>
+            <option>Workshop</option>
+            <option>Seminar</option>
+            <option>Fest</option>
+            <option>Meetup</option>
+          </select>
+
+          <div class="toggle" title="Dark mode">
+            <div id="dmToggle" class="switch">
+              <div class="knob"></div>
+            </div>
+          </div>
+
+          <button class="hamburger" aria-label="menu">
+            <span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span>
+          </button>
+
+          <nav class="nav">
+            <a class="btn" href="index.html">Home</a>
+            <a class="btn" href="events.html">Events</a>
+            <a class="btn" href="create.html">Create</a>
+            <a class="btn" href="profile.html">Profile</a>
+          </nav>
+        </div>
+      </header>
+
+      <section class="hero">
+        <h1>Find or host events at your college</h1>
+        <p class="small">
+          Workshops, fests, guest lectures — manage signups and track
+          participants in one place.
+        </p>
+        <div style="margin-top: 16px">
+          <a class="cta" href="events.html">Browse events</a>
+          <a class="btn" href="create.html" style="margin-left: 8px"
+            >Host an event</a
+          >
+        </div>
+
+      <div class="grid single" style="margin-top:20px">
+  <div class="card">
+    <h3>Upcoming Events</h3>
+    <div id="eventsList"></div>
+  </div>
+</div>
+
+
+
+    <script src="assets/app.js"></script>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="window.location.href='create.html'">
+      <img src="assets/add.png" alt="Add" />
+    </button>
+  </body>
+</html>

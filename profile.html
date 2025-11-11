@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="brand">
+          <div class="logo">CS</div>
+          <div>
+            <h2 style="margin: 0">CampusSphere</h2>
+            <div class="small">Profile</div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <input class="search-input" placeholder="Search events..." />
+          <select id="filterCategory" class="input">
+            <option value="">All categories</option>
+            <option>Workshop</option>
+            <option>Seminar</option>
+            <option>Fest</option>
+            <option>Meetup</option>
+          </select>
+
+          <div class="toggle" title="Dark mode">
+            <div id="dmToggle" class="switch"><div class="knob"></div></div>
+          </div>
+
+          <button class="hamburger" aria-label="menu">
+            <span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span>
+          </button>
+
+          <nav class="nav">
+            <a class="btn" href="index.html">Home</a>
+            <a class="btn" href="events.html">Events</a>
+            <a class="btn" href="create.html">Create</a>
+          </nav>
+        </div>
+      </header>
+
+      <section style="margin-top: 20px">
+        <h2>Your Dashboard</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px">
+          <div>
+            <h3>Events You Created</h3>
+            <div id="createdList"></div>
+          </div>
+          <div>
+            <h3>Events You Joined</h3>
+            <div id="joinedList"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="assets/app.js"></script>
+  </body>
+</html>

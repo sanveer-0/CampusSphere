@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Create Event</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="brand">
+          <div class="logo">CS</div>
+          <div>
+            <h2 style="margin: 0">CampusSphere</h2>
+            <div class="small">Create Event</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <input class="search-input" placeholder="Search events..." />
+          <select id="filterCategory" class="input">
+            <option value="">All categories</option>
+            <option>Workshop</option>
+            <option>Seminar</option>
+            <option>Fest</option>
+            <option>Meetup</option>
+          </select>
+
+          <div class="toggle" title="Dark mode">
+            <div id="dmToggle" class="switch"><div class="knob"></div></div>
+          </div>
+
+          <button class="hamburger" aria-label="menu">
+            <span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span>
+          </button>
+
+          <nav class="nav">
+            <a class="btn" href="index.html">Home</a>
+            <a class="btn" href="events.html">Events</a>
+            <a class="btn" href="profile.html">Profile</a>
+          </nav>
+        </div>
+      </header>
+
+      <section style="margin-top: 20px">
+        <h2>Create Event</h2>
+        <form id="createForm" class="form card">
+          <input id="title" class="input" placeholder="Event Title *" />
+          <input id="date" class="input" type="datetime-local" />
+          <select id="category" class="input">
+            <option value="" disabled selected>Choose category *</option>
+            <option>Workshop</option>
+            <option>Seminar</option>
+            <option>Fest</option>
+            <option>Meetup</option>
+          </select>
+          <!-- Location picker -->
+          <div style="display: flex; gap: 8px; align-items: center">
+            <input
+              id="location"
+              class="input"
+              placeholder="Location (pick on map or type & search)"
+            />
+            <button id="openMapBtn" type="button" class="btn">
+              Pick on map
+            </button>
+          </div>
+          <input id="lat" type="hidden" />
+          <input id="lon" type="hidden" />
+
+          <input
+            id="seats"
+            class="input"
+            type="number"
+            min="0"
+            placeholder="Seats (optional)"
+          />
+          <input id="image" class="input" placeholder="Image URL (optional)" />
+          <textarea id="desc" placeholder="Short description"></textarea>
+          <div style="display: flex; gap: 10px">
+            <button class="cta" type="submit">Create Event</button>
+            <a class="btn" href="events.html">Cancel</a>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/app.js"></script>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>

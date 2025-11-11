@@ -1,0 +1,592 @@
+/* ==========================================================================
+   CampusSphere — styles.css
+   Cleaned, organized, de-duplicated and commented
+   ========================================================================== */
+
+/* -------------------------
+   Variables
+   ------------------------- */
+:root {
+  --bg: #0f1724;
+  --card: #0b1220;
+  --accent: #6ee7b7;
+  --muted: #9aa6b2;
+  --glass: rgba(255,255,255,0.03);
+  --max-w: 1100px;
+  --radius: 12px;
+  --ff: 'Inter', system-ui, sans-serif;
+}
+
+/* -------------------------
+   Base / Global
+   ------------------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--ff);
+  background: linear-gradient(180deg,#071029 0%, #0b1220 100%);
+  color: #e6eef6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: var(--max-w);
+  margin: 20px auto;
+  padding: 16px;
+}
+
+/* Remove default anchor underline globally */
+a { text-decoration: none; }
+
+/* Utility classes */
+.small { font-size: 13px; color: var(--muted); }
+.padded { padding: 12px; }
+.center { display:flex; align-items:center; justify-content:center; }
+
+/* -------------------------
+   Header / Branding / Nav
+   ------------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), #34d399);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #06222b;
+}
+
+/* Header right (search, toggles, nav) */
+.header-right {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+/* Nav layout */
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Hamburger (mobile) */
+.hamburger {
+  display: none;
+  border: 0;
+  background: transparent;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.hamburger .bar {
+  display:block;
+  width: 20px;
+  height: 2px;
+  background: var(--muted);
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+/* -------------------------
+   Buttons / CTA / Variants
+   Unified styles to avoid duplication
+   ------------------------- */
+
+/* Base button look for anchors/button with .btn */
+a.btn,
+button.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  gap: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Primary CTA (green gradient) */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #0ea5a4, #34d399);
+  color: #052324;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+/* Danger variation (delete button) — more specific to override .cta */
+.cta.btn-danger,
+.btn-danger {
+  background: linear-gradient(90deg, #ef4444, #fb7185);
+  color: #ffffff !important;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 6px 18px rgba(239,68,68,0.28);
+  transition: all 0.2s ease;
+}
+
+/* Hover states (glow and lift) */
+a.btn:hover,
+button.btn:hover,
+.cta:hover,
+.fab:hover,
+.switch:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 12px rgba(110,231,183,0.6), 0 0 24px rgba(110,231,183,0.28);
+}
+
+/* CTA-specific hover stronger */
+.cta:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35), 0 0 20px rgba(110,231,183,0.35);
+}
+
+/* Danger hover tweak */
+.cta.btn-danger:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 14px rgba(239,68,68,0.55), 0 0 28px rgba(251,113,133,0.25);
+}
+
+/* Active (press) feedback */
+a.btn:active,
+button.btn:active,
+.cta:active,
+.fab:active,
+.switch:active {
+  transform: scale(0.96);
+}
+
+/* Focus accessibility */
+a.btn:focus-visible,
+button.btn:focus-visible,
+.cta:focus-visible,
+.fab:focus-visible,
+.switch:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(110,231,183,0.35);
+}
+
+/* Dark-mode overrides for buttons */
+body.dark a.btn,
+body.dark button.btn,
+body.dark .nav a.btn {
+  background: #ffffff;
+  color: #0b1220;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+body.dark a.btn:hover,
+body.dark button.btn:hover,
+body.dark .nav a.btn:hover {
+  box-shadow: 0 0 12px rgba(14,165,164,0.5), 0 0 26px rgba(52,211,153,0.22);
+}
+
+/* -------------------------
+   Layout: Hero / Grid / Cards
+   ------------------------- */
+.hero {
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+/* full-width single card helper */
+.grid.single { grid-template-columns: 1fr; }
+
+.card {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+.event-img {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #071726;
+}
+
+.event-meta {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:10px;
+}
+
+/* -------------------------
+   Forms / Inputs
+   ------------------------- */
+.form { display:grid; gap:12px; }
+
+.input,
+textarea,
+select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+textarea { min-height: 120px; resize: vertical; }
+
+/* select hover/focus subtle glow */
+select:hover,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(110,231,183,0.35);
+}
+
+/* Light-mode adjustments for select */
+body.dark select {
+  background: #ffffff;
+  color: #0f1724;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Header extras: search input */
+.search-input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  color: inherit;
+  width: 220px;
+}
+
+/* -------------------------
+   Dark mode (class toggled on body)
+   ------------------------- */
+body.dark {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --accent: #0ea5a4;
+  --muted: #475569;
+  --glass: rgba(2,6,23,0.03);
+  color: #07202a;
+  background: linear-gradient(180deg,#ffffff 0%, #f1f5f9 100%);
+}
+body.dark .logo { color: #063238; }
+
+/* -------------------------
+   Dark mode toggle (styled like a button)
+   ------------------------- */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.switch {
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.12);
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 0 rgba(110,231,183,0);
+}
+
+.knob {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.25s ease, background 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.switch:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 0 12px rgba(110,231,183,0.6); }
+
+body.dark .switch {
+  background: linear-gradient(180deg, rgba(14,165,164,0.15), rgba(52,211,153,0.07));
+  border: 1px solid rgba(0,0,0,0.08);
+}
+body.dark .switch:hover {
+  box-shadow: 0 0 12px rgba(14,165,164,0.5), 0 0 26px rgba(52,211,153,0.22);
+}
+
+/* -------------------------
+   Map modal (Leaflet) styles
+   ------------------------- */
+#mapModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#mapModal .map-card {
+  width: 92%;
+  max-width: 900px;
+  height: 70vh;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+#mapHeader {
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:10px;
+  background:#f6f7fb;
+}
+#mapHeader input.map-search {
+  flex:1;
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+#mapArea { flex: 1; }
+
+#mapModal .map-actions {
+  padding:10px;
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  background:#fff;
+}
+.map-note { font-size:13px; color:#666; margin-left:8px; }
+
+/* Dark-mode adjustments for map modal */
+@media (prefers-color-scheme: dark) {
+  #mapHeader { background: #0b1220; color: #e6eef6; }
+  #mapModal .map-card { background: #071029; color:#e6eef6; }
+  #mapHeader input.map-search {
+    background: rgba(255,255,255,0.03);
+    color: #e6eef6;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+}
+
+/* -------------------------
+   Floating Action Button (FAB)
+   ------------------------- */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(90deg, #0ea5a4, #34d399);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  z-index: 999;
+}
+
+.fab img { width: 28px; height: 28px; object-fit: contain; }
+
+.fab:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 12px 36px rgba(14,165,164,0.22), 0 0 28px rgba(110,231,183,0.18);
+}
+
+/* subtle pulse animation for FAB */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 12px rgba(110,231,183,0.16), 0 0 24px rgba(110,231,183,0.08); }
+  50%     { box-shadow: 0 0 18px rgba(110,231,183,0.26), 0 0 30px rgba(110,231,183,0.12); }
+}
+.fab { animation: pulseGlow 3.2s ease-in-out infinite; }
+
+
+/* =======================================================
+   Card fade-in animation (for event and homepage cards)
+   ======================================================= */
+
+/* Defines how elements fade & move upward */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Applies the fadeUp animation to every card */
+.card {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Adds staggered entry delays */
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
+
+
+/* -------------------------
+   Mobile / Responsive Fixes
+   ------------------------- */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+
+  /* Container & header tweaks */
+  .container { padding: 12px; margin: 12px auto; }
+  .header { flex-direction: row; align-items: center; gap: 10px; }
+  .brand { gap: 10px; }
+  .logo { width: 40px; height: 40px; }
+
+  /* Header right responsive behavior */
+  .header-right {
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  /* Search & filters become full width when needed */
+  .search-input { width: 140px; min-width: 120px; }
+  .header-right .search-input,
+  .header-right .input,
+  .header-right select {
+    flex: 1 1 100%;
+    width: 100% !important;
+  }
+
+  /* Hamburger visible; nav overlays as column */
+  .hamburger { display: block; z-index: 10001; }
+  .nav {
+    position: fixed;
+    top: 64px;
+    right: 12px;
+    width: calc(100% - 24px);
+    max-width: 420px;
+    flex-direction: column;
+    background: rgba(6,10,14,0.96);
+    padding: 14px;
+    border-radius: 10px;
+    display: none;
+    gap: 10px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    z-index: 10000;
+  }
+  .nav.show { display:flex; }
+
+  /* Nav buttons full-width tap targets */
+  .nav a.btn {
+    width: 100%;
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  /* Grid -> single column */
+  .grid { grid-template-columns: 1fr !important; gap: 14px; margin-top: 14px; }
+
+  /* Card adjustments */
+  .card { padding: 14px; border-radius: 12px; }
+  .event-img { height: 160px; }
+  .card h3 { font-size: 18px; margin: 6px 0; }
+
+  /* Controls stack vertically and stretch (for easier tapping) */
+  .card > div[style*="display:flex"][style*="gap"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .card .cta {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+  .card .cta + .cta { margin-top: 8px; }
+
+  .small { font-size: 14px; }
+
+  /* FAB smaller & nudged */
+  .fab {
+    width: 50px;
+    height: 50px;
+    bottom: 18px;
+    right: 14px;
+  }
+  .fab img { width: 24px; height: 24px; }
+
+  /* Map modal near-fullscreen on phone */
+  #mapModal .map-card {
+    width: 98%;
+    height: 92vh;
+    max-width: none;
+    border-radius: 10px;
+  }
+  #mapHeader { padding: 8px; }
+  #mapHeader .map-search { font-size: 14px; padding: 8px; }
+  #mapModal .map-actions { padding: 10px; }
+
+  /* Reduce heavy shadows for performance */
+  .card, .nav, .fab { box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+
+  /* Inputs slightly larger */
+  .input, textarea, select, .search-input {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+/* Extra tweak for very narrow phones */
+@media (max-width: 360px) {
+  .nav { right: 8px; left: 8px; width: auto; }
+  .header-right .search-input { width: 100%; }
+  .event-img { height: 140px; }
+}
