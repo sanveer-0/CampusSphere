@@ -29,8 +29,13 @@ function createEventCard(ev, idx){
   const img = document.createElement('img');
   img.className = 'event-img';
   img.alt = '';
-  img.src = ev.image && ev.image.trim() ? ev.image : ('https://picsum.photos/seed/' + encodeURIComponent(ev.title) + '/600/300');
-  img.onerror = function(){ this.onerror = null; this.src = 'https://picsum.photos/600/300?grayscale&random=1'; };
+  // only show image if provided
+  if (ev.image && ev.image.trim()) {
+    img.src = ev.image.trim();
+  } else {
+    img.style.display = 'none'; // hide the image element completely
+  }
+
   card.appendChild(img);
 
   const h3 = document.createElement('h3'); h3.textContent = ev.title; card.appendChild(h3);
