@@ -210,6 +210,17 @@ function currentCategoryFilter(){
 
 // --- UI: hamburger & dark-mode
 function setupHeaderUI(){
+
+  // FAB Dark Mode Toggle
+  const darkFab = document.getElementById('darkFab');
+  if (darkFab) {
+  darkFab.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    localStorage.setItem(DM_KEY, document.body.classList.contains('dark') ? '1' : '0');
+  });
+  }
+
+
   // hamburger
   const burger = document.querySelector('.hamburger');
   const nav = document.querySelector('.nav');
