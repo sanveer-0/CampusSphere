@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Optional: if user types an address and blurs, try to geocode and fill lat/lon silently
+  // user types an address and blurs, try to geocode and fill lat/lon silently
   if(locationInput){
     locationInput.addEventListener('blur', async () => {
       const q = locationInput.value || '';
@@ -438,8 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(r){
         latInput.value = r.lat;
         lonInput.value = r.lon;
-        // leave display as typed or replace with r.display_name if you'd like:
-        // locationInput.value = r.display_name;
+        
       }
     });
   }
