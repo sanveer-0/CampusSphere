@@ -1,6 +1,5 @@
 /* ==========================================================================
    CampusSphere — styles.css
-   Cleaned, organized, de-duplicated and commented
    ========================================================================== */
 
 /* -------------------------
@@ -304,20 +303,7 @@ body.dark {
 }
 body.dark .logo { color: #063238; }
 
-/* -------------------------
-   Dark mode toggle (styled like a button)
-   ------------------------- */
 
-
-.switch:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 0 12px rgba(110,231,183,0.6); }
-
-body.dark .switch {
-  background: linear-gradient(180deg, rgba(14,165,164,0.15), rgba(52,211,153,0.07));
-  border: 1px solid rgba(0,0,0,0.08);
-}
-body.dark .switch:hover {
-  box-shadow: 0 0 12px rgba(14,165,164,0.5), 0 0 26px rgba(52,211,153,0.22);
-}
 
 /* -------------------------
    Map modal (Leaflet) styles
